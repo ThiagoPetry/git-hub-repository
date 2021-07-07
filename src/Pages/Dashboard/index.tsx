@@ -29,27 +29,6 @@ const Dashboard: React.FC = () => {
           <p>Projeto para listar repositórios do GitHub</p>
         </div>
       </Repository>
-      <Repository>
-        <img src="https://image.flaticon.com/icons/png/512/25/25231.png" alt="Logo" />
-        <div>
-          <strong>thiagopetry/GitHubRepository</strong>
-          <p>Projeto para listar repositórios do GitHub</p>
-        </div>
-      </Repository>
-      <Repository>
-        <img src="https://image.flaticon.com/icons/png/512/25/25231.png" alt="Logo" />
-        <div>
-          <strong>thiagopetry/GitHubRepository</strong>
-          <p>Projeto para listar repositórios do GitHub</p>
-        </div>
-      </Repository>
-      <Repository>
-        <img src="https://image.flaticon.com/icons/png/512/25/25231.png" alt="Logo" />
-        <div>
-          <strong>thiagopetry/GitHubRepository</strong>
-          <p>Projeto para listar repositórios do GitHub</p>
-        </div>
-      </Repository>
     </>
   );
 };
