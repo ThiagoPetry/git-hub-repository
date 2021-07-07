@@ -21,9 +21,10 @@ export const Form = styled.form`
     flex: 1;
     height: 50px;
     padding: 0 24px;
+    background-color: #f4f4f4;
     border: 0;
     font-size: 0.6em;
-    border-bottom: 3px solid black;
+    border-bottom: 3px solid black;      
   }
 
   button {
@@ -47,7 +48,7 @@ export const Form = styled.form`
 
 export const Repository = styled.div`
   margin-top: 80px;
-  max-width: 700px;
+  max-width: 1000px;
 
   display: flex;
   justify-content: center;
@@ -55,6 +56,7 @@ export const Repository = styled.div`
   img {
     width: 150px;
     heigth: 150px;
+    border-radius: 100%;
     filter: drop-shadow(0px 0px 5px rgb(0, 0, 0, 0.2));
   }
 
@@ -69,7 +71,6 @@ export const Repository = styled.div`
       font-size: 0.8em;
       margin-top: 4px;
     }
-
   }
 
 `;
