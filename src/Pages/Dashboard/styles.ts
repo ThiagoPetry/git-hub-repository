@@ -74,7 +74,7 @@ export const Container = styled.div`
   }
 
   #arrow {
-    margin-top: 30px;
+    margin-top: 50px;
 
     &:hover {
       cursor: pointer;
@@ -99,6 +99,7 @@ export const Repositories = styled.div`
     display: block;
     text-decoration: none;
     justify-content: center;
+    color: #222;
 
     display: flex;
     align-itens: center;
