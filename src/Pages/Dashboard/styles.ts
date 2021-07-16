@@ -1,5 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { shade } from 'polished';
+
+interface FormProps {
+  hasError: boolean;
+}
 
 export const Title = styled.h1`
   font-size: 2em;
@@ -11,7 +15,7 @@ export const Title = styled.h1`
   text-align: center;
 `;
 
-export const Form = styled.form`
+export const Form = styled.form<FormProps>`
   font-size: 1em;
   max-width: 1000px;
   margin-top: 25px;
@@ -25,10 +29,13 @@ export const Form = styled.form`
     height: 50px;
     padding: 0 24px;
     background-color: #f4f4f4;
-    border: 0;
     font-size: 0.6em;
-    border-bottom: 3px solid rgb(3, 3, 3);
 
+    border: 0;
+    border-bottom: 3px solid rgb(3, 3, 3);
+    ${props => props.hasError && css`
+      border-bottom: 3px solid red;
+    `}
   }
 
   button {
@@ -40,7 +47,6 @@ export const Form = styled.form`
     border-radius: 5px;
     margin-left: 10px;
     box-shadow: 0px 0px 10px rgb(20, 180, 60, 0.5);
-
     transition: all 0.2s;
 
     &:hover {
@@ -54,6 +60,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: row;
+  margin-top: 45px;
 
   &::after {
     content: '.';
@@ -65,10 +72,19 @@ export const Container = styled.div`
     margin-top: 165px;
     position: absolute;
   }
+
+  #arrow {
+    margin-top: 30px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;
 
 export const Repositories = styled.div`
-  margin-top: 80px;
+  margin-top: 20px;
+  margin-bottom: 40px;
   max-width: 1000px;
 
   display: flex;
@@ -118,4 +134,18 @@ export const Repositories = styled.div`
       }
     }
   }
+`;
+
+export const Error = styled.span`
+  display: flex;
+  justify-content: center;
+
+  margin-top: 20px;
+  margin-left: -50px;
+
+  font-weight: bold;
+  font-size: 0.5em;
+  color: red;
+
+  text-transform: uppercase;
 `;

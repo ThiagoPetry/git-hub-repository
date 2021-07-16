@@ -2,7 +2,7 @@ import React, { useState, FormEvent } from 'react';
 import { FiChevronRight } from 'react-icons/fi';
 import api from '../../services/api';
 
-import { Title, Repositories, Form, Container } from './styles'
+import { Title, Repositories, Form, Container, Error } from './styles'
 
 interface Repository {
   full_name: string;
@@ -15,26 +15,40 @@ interface Repository {
 
 const Dashboard: React.FC = () => {
   const [newRepo, setNewRepo] = useState('');
+  const [inputError, setInputError] = useState('');
   const [repositories, setRepositories] = useState<Repository[]>([]);
 
   async function handleAddRepository(event: FormEvent<HTMLFormElement>,): Promise<void> {
     event.preventDefault();
 
-    const response = await api.get<Repository>(`repos/${newRepo}`);
-    const repository = response.data;
+    if(!newRepo) {
+      setInputError('Digite um repositório');
+      return;
+    }
 
-    setRepositories([...repositories, repository]);
-    setNewRepo('');
+    try {
+      const response = await api.get<Repository>(`repos/${newRepo}`);
+      const repository = response.data;
+
+      setRepositories([...repositories, repository]);
+      setNewRepo('');
+      setInputError('');
+
+    } catch(err) {
+      setInputError('Repositório não encontrado ou não inexistente.');
+    }
   }
 
   return (
     <>
       <Title>Explore repositórios no GitHub</Title>
 
-      <Form onSubmit={handleAddRepository}>
+      <Form hasError={!!inputError} onSubmit={handleAddRepository}>
           <input value={newRepo} onChange={e => setNewRepo(e.target.value)} placeholder="Repositório" />
           <button type="submit">Pesquisar</button>
       </Form>
+
+      {inputError && <Error>{inputError}</Error>}
 
       <Repositories>
           {repositories.map(repository => (
@@ -45,7 +59,7 @@ const Dashboard: React.FC = () => {
                     <strong>{repository.full_name}</strong>
                     <p>{repository.description}</p>
                 </div>
-                <FiChevronRight size={50} />
+                <FiChevronRight id="arrow" size={50} />
               </a>
             </Container>
           ))}
