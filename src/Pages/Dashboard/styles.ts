@@ -1,5 +1,6 @@
-import styled, { css } from 'styled-components';
-import { shade } from 'polished';
+import styled, { css } from "styled-components";
+
+import { shade } from "polished";
 
 interface FormProps {
   hasError: boolean;
@@ -19,7 +20,6 @@ export const Form = styled.form<FormProps>`
   font-size: 1em;
   max-width: 1000px;
   margin-top: 25px;
-
   display: flex;
   justify-content: center;
 
@@ -29,10 +29,10 @@ export const Form = styled.form<FormProps>`
     height: 50px;
     padding: 0 24px;
     background-color: #f4f4f4;
-    font-size: 0.6em;
-
+    font-size: 18px;
     border: 0;
-    border-bottom: 3px solid rgb(3, 3, 3);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+
     ${props => props.hasError && css`
       border-bottom: 3px solid red;
     `}
@@ -50,7 +50,7 @@ export const Form = styled.form<FormProps>`
     transition: all 0.2s;
 
     &:hover {
-      background: ${shade(0.2, '#14b43c')};
+      background: ${shade(0.2, "#14b43c")};
       box-shadow: 0px 0px 10px rgb(20, 180, 60, 1);
     }
   }
@@ -60,22 +60,20 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: row;
-  margin-top: 45px;
+  margin-top: 50px;
 
   &::after {
-    content: '.';
+    content: ".";
     width: 750px;
-    heigth: 2px;
+    height: 2px;
     font-size: 1px;
-    background-color: rgb(178, 178, 178);
+    background-color: rgba(0, 0, 0, 0.1);
     display: flex;
     margin-top: 165px;
     position: absolute;
   }
 
   #arrow {
-    margin-top: 50px;
-
     &:hover {
       cursor: pointer;
     }
@@ -86,7 +84,6 @@ export const Repositories = styled.div`
   margin-top: 20px;
   margin-bottom: 40px;
   max-width: 1000px;
-
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -96,14 +93,13 @@ export const Repositories = styled.div`
     border-radius: 5px;
     width: 100%;
     padding: 2px;
-    display: block;
-    text-decoration: none;
-    justify-content: center;
-    color: #222;
-
     display: flex;
-    align-itens: center;
-
+    justify-content: space-between;
+    text-decoration: none;
+    align-items: center;
+    color: #222;
+    display: flex;
+    align-items: center;
     transition: all 0.2s;
 
     &:hover {
@@ -116,12 +112,17 @@ export const Repositories = styled.div`
 
     img {
       width: 140px;
-      heigth: 140px;
+      height: 140px;
       border-radius: 100%;
       box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.5);
     }
 
-    div {
+    .box {
+      display: flex;
+      align-items: center;
+    }
+
+    .info {
       margin: 25px 25px;
 
       strong {
@@ -140,13 +141,10 @@ export const Repositories = styled.div`
 export const Error = styled.span`
   display: flex;
   justify-content: center;
-
   margin-top: 20px;
   margin-left: -50px;
-
   font-weight: bold;
   font-size: 0.5em;
   color: red;
-
   text-transform: uppercase;
 `;

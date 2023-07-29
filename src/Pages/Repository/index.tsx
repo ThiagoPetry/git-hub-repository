@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { useRouteMatch, Link } from 'react-router-dom';
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import api from '../../services/api';
+import React, { useState, useEffect } from "react";
 
-import logoImg from '../../assets/logo.svg';
+import { useRouteMatch, Link } from "react-router-dom";
 
-import { Header, RepositoryInfo, Issues } from './styles' ;
+import api from "../../services/api";
+
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+
+import { Header, RepositoryInfo, Issues } from "./styles";
+
+import logoImg from "../../assets/logo.svg";
 
 interface RepositoryParams {
   repository: string;
@@ -39,34 +42,43 @@ const Repository: React.FC = () => {
 
   const { params } = useRouteMatch<RepositoryParams>();
 
-    useEffect(() => {
-      api.get(`repos/${params.repository}`).then((response => {
+  useEffect(() => {
+    api.get(`repos/${params.repository}`).then((response) => {
+      if (response.data) {
         setRepository(response.data);
-      }))
+      }
+    });
 
-      api.get(`repos/${params.repository}/issues`).then((response => {
-        setIssues(response.data);
-      }))
-    }, [params.repository]);
+    api.get(`repos/${params.repository}/issues`).then((response) => {
+      if (response.data) {
+        setIssues(response.data)
+      }
+    });
+  }, [params.repository]);
 
   return (
     <>
       <Header>
         <img src={logoImg} alt="GitHub Explorer" />
+
         <Link to="/">
-          <FiChevronLeft size={16}/>
-          Voltar
+          <FiChevronLeft size={16} /> Voltar
         </Link>
       </Header>
-      {repository && (
+
+      {repository &&
         <RepositoryInfo>
           <Header>
-            <img src={repository?.owner.avatar_url} alt={repository.owner.login} />
+            <img
+              alt={repository.owner.login}
+              src={repository?.owner.avatar_url}
+            />
             <div>
               <strong>{repository.full_name}</strong>
               <p>{repository.description}</p>
             </div>
           </Header>
+
           <ul>
             <li>
               <strong>{repository.stargazers_count}</strong>
@@ -82,15 +94,16 @@ const Repository: React.FC = () => {
             </li>
           </ul>
         </RepositoryInfo>
-      )}
+      }
 
       <Issues>
-        {issues.map(issue => (
+        {issues.map((issue) => (
           <a key={issue.id} href={issue.html_url} target="blanck">
             <img src={issue.user.avatar_url} alt={issue.user.login} />
+
             <div>
-                <strong>{issue.title}</strong>
-                <p>{issue.user.login}</p>
+              <strong>{issue.title}</strong>
+              <p>{issue.user.login}</p>
             </div>
             <FiChevronRight size={50} />
           </a>

@@ -29,7 +29,7 @@ export const RepositoryInfo = styled.section`
 
     header {
         display: flex;
-        align-items; center;
+        align-items: center;
 
         img {
             width: 120px;
@@ -94,7 +94,7 @@ export const Issues = styled.div`
         color: #222;
 
         display: flex;
-        align-itens: center;
+        align-items: center;
 
         transition: all 0.2s;
 
@@ -108,7 +108,7 @@ export const Issues = styled.div`
 
         img {
             width: 140px;
-            heigth: 140px;
+            height: 140px;
             border-radius: 100%;
             box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.5);
         }
